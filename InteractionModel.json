@@ -1,0 +1,139 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "List_Names",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "Mohit Sharma",
+              "synonyms": []
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "getPolicyDetails",
+        "samples": [
+          "get my policy details"
+        ],
+        "slots": [
+          {
+            "name": "policyNumber",
+            "type": "AMAZON.NUMBER",
+            "samples": [
+              "{policyNumber}",
+              "my policy number is {policyNumber}"
+            ]
+          },
+          {
+            "name": "customerName",
+            "type": "List_Names",
+            "samples": [
+              "{customerName}",
+              "My full name is {customerName}",
+              "My name is {customerName}"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "advisor"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-getPolicyDetails.IntentSlot-policyNumber",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What is your policy number?"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-getPolicyDetails.IntentSlot-policyNumber",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Your policy number is {policyNumber} . Right?"
+        },
+        {
+          "type": "PlainText",
+          "value": "So your policy number is {policyNumber}. Is that right?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-getPolicyDetails.IntentSlot-customerName",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What is your full name"
+        },
+        {
+          "type": "PlainText",
+          "value": "Please provide your  full name"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-getPolicyDetails.IntentSlot-customerName",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "So you are {customerName}. Right?"
+        },
+        {
+          "type": "PlainText",
+          "value": "So your name is {customerName}. Is that correct"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "getPolicyDetails",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "policyNumber",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getPolicyDetails.IntentSlot-policyNumber",
+              "confirmation": "Confirm.Intent-getPolicyDetails.IntentSlot-policyNumber"
+            }
+          },
+          {
+            "name": "customerName",
+            "type": "List_Names",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getPolicyDetails.IntentSlot-customerName",
+              "confirmation": "Confirm.Intent-getPolicyDetails.IntentSlot-customerName"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
