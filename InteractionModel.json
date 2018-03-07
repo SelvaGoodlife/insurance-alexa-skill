@@ -2,12 +2,118 @@
   "languageModel": {
     "types": [
       {
+        "name": "List_Line_Of_Business",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "Health Insurance",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "General Insurance",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Vehicle Insurance",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Business Insurance",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Pet Insurance",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
         "name": "List_Names",
         "values": [
           {
             "id": null,
             "name": {
               "value": "Mohit Sharma",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
+        "name": "Period",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "last quater",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "last week",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "last month",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "last year",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
+        "name": "Region",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "Victoria",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Melbourne",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Western Australia",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "New South Wales",
               "synonyms": []
             }
           }
@@ -26,6 +132,37 @@
       {
         "name": "AMAZON.StopIntent",
         "samples": []
+      },
+      {
+        "name": "getInsurancePremiumSummary",
+        "samples": [
+          "get insurance premium summary",
+          "get insurance  premium summary of {lob} for {Period} in {Region}",
+          "get insurance  summary of {lob} for {Period} in {Region}"
+        ],
+        "slots": [
+          {
+            "name": "lob",
+            "type": "List_Line_Of_Business",
+            "samples": [
+              "{lob}"
+            ]
+          },
+          {
+            "name": "Period",
+            "type": "Period",
+            "samples": [
+              "{Period}"
+            ]
+          },
+          {
+            "name": "Region",
+            "type": "Region",
+            "samples": [
+              "{Region}"
+            ]
+          }
+        ]
       },
       {
         "name": "getPolicyDetails",
@@ -51,11 +188,45 @@
             ]
           }
         ]
+      },
+      {
+        "name": "insurancePremiumSummary",
+        "samples": [
+          "open Insurance premium summary"
+        ],
+        "slots": []
       }
     ],
     "invocationName": "advisor"
   },
   "prompts": [
+    {
+      "id": "Elicit.Intent-getInsurancePremiumSummary.IntentSlot-lob",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Please provide  line of business or product you are interested ?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-getInsurancePremiumSummary.IntentSlot-Period",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "For which period ?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-getInsurancePremiumSummary.IntentSlot-Region",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "In what region ?"
+        }
+      ]
+    },
     {
       "id": "Elicit.Intent-getPolicyDetails.IntentSlot-policyNumber",
       "variations": [
@@ -107,6 +278,40 @@
   ],
   "dialog": {
     "intents": [
+      {
+        "name": "getInsurancePremiumSummary",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "lob",
+            "type": "List_Line_Of_Business",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getInsurancePremiumSummary.IntentSlot-lob"
+            }
+          },
+          {
+            "name": "Period",
+            "type": "Period",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getInsurancePremiumSummary.IntentSlot-Period"
+            }
+          },
+          {
+            "name": "Region",
+            "type": "Region",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-getInsurancePremiumSummary.IntentSlot-Region"
+            }
+          }
+        ]
+      },
       {
         "name": "getPolicyDetails",
         "confirmationRequired": false,

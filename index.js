@@ -2,6 +2,7 @@
 
  let speechOutput;
  let reprompt;
+ let controller = require('./controller.js');
  let Speech = require('ssml-builder');
  const config = require('./config.js');
  const welcomeOutput = "Welcome to Insurance Advisor skill. <break time='250ms'/> You can get details of your policy by saying get my policy details. <break time='250ms'/> I have sent home card to your Alexa App for further refrernce. <break time='250ms'/>So try it out";
@@ -10,6 +11,9 @@
  "User  need to provide two inputs : \n" +
  "\n\u22C5 Policy Number" +
   "\n\u22C5 Customer Name \n"
+
+  const welcomeInsuranceSummary = "Welcome to Insurance Premium Summary Skill. <break time='250ms'/> ."+
+  "You can get insurance summary details by providng key parameters like line of business , <break time='50ms'/> region and <break time='50ms'/> period .<break time='250ms'/>I have sent home card to your Alexa App for further referernce. <break time='250ms'/>So try it out "
 
 
 
@@ -27,6 +31,17 @@ const handlers = {
       let cardTitle = "Skill: " + APP_NAME;
       this.response.cardRenderer(cardTitle, welcomeCard);
       this.emit(':responseReady');
+    },
+    'insurancePremiumSummary': function () {
+    //  this.response.speak(welcomeInsuranceSummary).listen(welcomeInsuranceSummary);
+      this.emit(':ask',welcomeInsuranceSummary,welcomeInsuranceSummary);
+    },
+    'getInsurancePremiumSummary': function () {
+
+      var filledSlots = delegateSlotCollection.call(this);
+      let slots = this.event.request.intent.slots;
+      controller.getInsuranceSummary(slots.lob.value.toLowerCase(),slots.Period.value.toLowerCase(),slots.Region.value.toLowerCase(),this)
+
     },
     'getPolicyDetails': function () {
         //delegate to Alexa to collect all the required slot values
@@ -110,10 +125,12 @@ function delegateSlotCollection(){
       //you have defaults, then return Dialog.Delegate with this updated intent
       // in the updatedIntent property
       this.emit(":delegate", updatedIntent);
+      return false;
     } else if (this.event.request.dialogState !== "COMPLETED") {
       console.log("in not completed");
       // return a Dialog.Delegate directive with no updatedIntent property.
       this.emit(":delegate");
+      return false;
     } else {
       console.log("in completed");
       console.log("returning: "+ JSON.stringify(this.event.request.intent));

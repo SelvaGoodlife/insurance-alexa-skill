@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "alexa-sdk": "^1.0.10",
+    "mongomock": "^0.1.2",
     "ssml-builder": "^0.4.3"
   }
 }

@@ -1,0 +1,40 @@
+{
+	"_id" : ObjectId("599c20534669f2a00d49def0"),
+	"gatewayId" : "b8-27-eb-d6-62-5c",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("599ffa83bb8aca513b66572c"),
+	"gatewayId" : "b8-27-eb-3b-2f-c9",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("59ada461bb8aca513b66572d"),
+	"gatewayId" : "b8-27-eb-01-15-ae",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("59f48c8c3f16e89cb6be6e40"),
+	"gatewayId" : "b8-27-eb-9a-57-c6",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("59fc08e83f16e89cb6be6e46"),
+	"gatewayId" : "b8-27-eb-3b-2f-c9 ",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("59fc5e293f16e89cb6be6e47"),
+	"gatewayId" : " b8-27-eb-3b-2f-c9",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("5a803a7292eeff9e0e95145f"),
+	"gatewayId" : "b8-27-eb-b8-ab-16",
+	"__v" : NumberInt("0")
+},
+{
+	"_id" : ObjectId("5a85d6a5b7248b56e882e256"),
+	"gatewayId" : "b8-27-eb-f5-a5-49",
+	"__v" : NumberInt("0")
+},
