@@ -2,46 +2,14 @@ var MongoMock = require('mongomock');
 let Speech = require('ssml-builder');
 //initial mock data
 var db = {
-   insuranceSummaries:[
-      {
-         "lob":"health insurance",
-         "period": "last quarter",
-         "NWP":28,
-         "region":"victoria",
-         "NEP":32,
-         "NCI": 20,
-         "ClaimRatio": 38.3,
-         "Lossratio": 40.3
-      },
-      {
-         "lob":"vehicle insurance",
-          "period": "last month",
-         "NWP":28,
-         "region":"new south wales",
-         "NEP":32,
-         "NCI": 20,
-         "ClaimRatio": 38.3,
-         "Loss ratio": 40.3
-      },
-      {
-         "lob":"health insurance",
-         "NWP":28,
-         "period": "last week",
-         "region":"victoria",
-         "NEP":32,
-         "NCI": 20,
-         "ClaimRatio": 38.3,
-         "Loss ratio": 40.3
-      },
-      {
-         "lob":"health insurance",
-         "NWP":28,
-         "region":"victoria",
-         "NEP":32,
-         "NCI": 20,
-         "ClaimRatio": 38.3,
-         "Loss ratio": 40.3
-      }
+   advisorDetails:[
+        {
+           "address":"XYZ",
+           "availabledate": "2018-03-22",
+        //   "availableStartSlot":10:30,
+        //   "availableEndSlot":11:30,
+           "name":"John",
+        }
    ]
 }
 
